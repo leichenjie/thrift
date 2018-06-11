@@ -18,7 +18,7 @@ public class ClientMain {
         transport.open();  // 建立连接
 
         // 第一种请求类型
-        Request request = new Request().setUsername("liulongling").setPassword("123456");
+        Request request = new Request().setUsername("thriftTest").setPassword("123456");
         System.out.println(client.doAction(request));
         transport.close();  // 请求结束，断开连接
     }
