@@ -1,20 +1,20 @@
-#thrift总结
-###1. 介绍
+# thrift总结
+### 1. 介绍
 简单来说，thrift是Facebook公布的一款开源跨语言的RPC框架，那么问题来了
-####1.1 什么是RPC框架
+#### 1.1 什么是RPC框架
 RPC全称Remote Procedure Call，意为远程过程调用。
 假设有两台服务器A、B，A服务器上部署着一个应用a，B服务器上部署着一个应用b，现在a希望能够调用b应用的某个函数（方法），但是二者不在同一个进程内，不能直接调用，就需要通过网络传输，在AB服务器之间建一条网络传输通道，a把参数传过去，b接收到参数调用自己的方法，得到结果，在通过网络传回给a。简单讲，就是A通过网络来调用B的过程涉及的东西很多，比如多线程，Socket，序列化反序列化，网络I/O等，于是牛掰的程序员把这些封装起来做成一套框架，供大家使用，就是RPC框架。
-####1.2 thrift语言特性
+#### 1.2 thrift语言特性
 Thrift是一款由Facebook开发的可伸缩、跨语言的服务开发框架，该框架已经开源并且加入了Apache项目。Thrift主要功能是：通过自定义的Interface Definition Language（IDL），可以创建基于RPC的客户端和服务端的服务代码。数据和服务代码的生成是通过Thrift内置的代码生成器来实现的。通过特殊的编译器可以生成不同语言的代码，以满足不同需要的开发者，比如java开发者，就可以生成java代码，C++开发者可以生成C++代码，生成的代码不但包含目标的接口定义、方法、数据类型，还包含有RPC协议层和传输层的实现代码。
-###2. windows下安装配置
+### 2. windows下安装配置
 Thrift不需要安装，只需下载windows版的Thrift代码生成器即可。
 * 下载地址：[http://archive.apache.org/dist/thrift/0.9.3/](http://archive.apache.org/dist/thrift/0.9.3/)
  
 ![thrift-help](images\thrift-help.png)
 
 注意：下载下来之后，必须把文件名字thrift-0.10.0.exe 改为  thrift.exe, 否则cmd会提示：thrift 不是内部命令的错误。
-###3. Java实例
-####3.1 编写IDL接口  
+### 3. Java实例
+#### 3.1 编写IDL接口  
 login.thrift  
     ``` login.thrift  
     namespace java com.lei.thrift  
@@ -34,7 +34,7 @@ login.thrift
         string doAction(1: Request request) throws (1:RequestException qe); // 可能抛出异常。  
     } 
     ```
-####3.2 用Thrift编译器编译成对应的类
+#### 3.2 用Thrift编译器编译成对应的类
 运行如下命令，生成对应的java类
 ```
 thrift -gen java login.thrift
@@ -1128,7 +1128,7 @@ public class LoginService {
 
 }
 ```
-####3.3 编写真正的业务实现类
+#### 3.3 编写真正的业务实现类
 ```
 package com.lei.login;
 
@@ -1147,7 +1147,7 @@ public class LoginServiceImpl implements LoginService.Iface{
     }
 }
 ```
-####3.4 编写Server端代码
+#### 3.4 编写Server端代码
 ```
 package com.lei.login;
 
@@ -1172,7 +1172,7 @@ public class LoginMain {
     }
 }
 ```
-####3.5 编写client端代码
+#### 3.5 编写client端代码
 ```
 package com.lei.login;
 
@@ -1200,7 +1200,7 @@ public class ClientMain {
     }
 }
 ```
-####3.6 运行结果
+#### 3.6 运行结果
 先运行Server端，再运行Client端  
 服务输出：
 ```
