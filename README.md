@@ -10,30 +10,30 @@ Thrift是一款由Facebook开发的可伸缩、跨语言的服务开发框架，
 Thrift不需要安装，只需下载windows版的Thrift代码生成器即可。
 * 下载地址：[http://archive.apache.org/dist/thrift/0.9.3/](http://archive.apache.org/dist/thrift/0.9.3/)
  
-![thrift-help](images\thrift-help.png)
+![thrift-help](images/thrift-help.png)
 
 注意：下载下来之后，必须把文件名字thrift-0.10.0.exe 改为  thrift.exe, 否则cmd会提示：thrift 不是内部命令的错误。
 ### 3. Java实例
 #### 3.1 编写IDL接口  
 login.thrift  
-    ``` login.thrift  
-    namespace java com.lei.thrift  
-      
-    struct Request {  
-        1: string username;        
-        2: string password;             
-    }  
-      
-    exception RequestException {  
-        1: required i32 code;  
-        2: optional string reason;  
-    }  
-      
-    // 服务名  
-    service LoginService {  
-        string doAction(1: Request request) throws (1:RequestException qe); // 可能抛出异常。  
-    } 
-    ```
+```
+namespace java com.lei.thrift  
+  
+struct Request {  
+    1: string username;        
+    2: string password;             
+}  
+  
+exception RequestException {  
+    1: required i32 code;  
+    2: optional string reason;  
+}  
+  
+// 服务名  
+service LoginService {  
+    string doAction(1: Request request) throws (1:RequestException qe); // 可能抛出异常。  
+} 
+```
 #### 3.2 用Thrift编译器编译成对应的类
 运行如下命令，生成对应的java类
 ```
